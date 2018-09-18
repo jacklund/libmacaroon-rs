@@ -247,8 +247,8 @@ mod tests {
                                      238, 155, 5, 177, 88, 134, 218, 11, 168, 94, 140, 66, 169,
                                      60, 141, 14, 18, 94, 252];
         let mut builder = MacaroonBuilder::new();
-        builder.add_caveat(box caveat::new_first_party("account = 3735928559"));
-        builder.add_caveat(box caveat::new_first_party("user = alice"));
+        builder.add_caveat(Box::new(caveat::new_first_party("account = 3735928559")));
+        builder.add_caveat(Box::new(caveat::new_first_party("user = alice")));
         builder.set_location("http://example.org/");
         builder.set_identifier("keyid");
         builder.set_signature(&SIGNATURE);

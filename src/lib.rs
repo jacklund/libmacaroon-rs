@@ -225,7 +225,7 @@ impl Macaroon {
     pub fn add_first_party_caveat<'r>(&mut self, predicate: &'r str) {
         let caveat: caveat::FirstPartyCaveat = caveat::new_first_party(predicate);
         self.signature = caveat.sign(&self.signature);
-        self.caveats.push(box caveat);
+        self.caveats.push(Box::new(caveat));
         debug!("Macaroon::add_first_party_caveat: {:?}", self);
     }
 
@@ -238,7 +238,7 @@ impl Macaroon {
         let vid: Vec<u8> = crypto::encrypt(self.signature, &derived_key);
         let caveat: caveat::ThirdPartyCaveat = caveat::new_third_party(id, vid, location);
         self.signature = caveat.sign(&self.signature);
-        self.caveats.push(box caveat);
+        self.caveats.push(Box::new(caveat));
         debug!("Macaroon::add_third_party_caveat: {:?}", self);
     }
 

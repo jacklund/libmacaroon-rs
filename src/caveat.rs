@@ -91,7 +91,7 @@ impl Caveat for FirstPartyCaveat {
     }
 
     fn clone_box(&self) -> Box<Caveat> {
-        box self.clone()
+        Box::new(self.clone())
     }
 }
 
@@ -149,7 +149,7 @@ impl Caveat for ThirdPartyCaveat {
     }
 
     fn clone_box(&self) -> Box<Caveat> {
-        box self.clone()
+        Box::new(self.clone())
     }
 }
 
@@ -202,12 +202,12 @@ impl CaveatBuilder {
             return Err(MacaroonError::BadMacaroon("No identifier found"));
         }
         if self.verifier_id.is_none() && self.location.is_none() {
-            return Ok(box new_first_party(&self.id.unwrap()));
+            return Ok(Box::new(new_first_party(&self.id.unwrap())));
         }
         if self.verifier_id.is_some() && self.location.is_some() {
-            return Ok(box new_third_party(&self.id.unwrap(),
+            return Ok(Box::new(new_third_party(&self.id.unwrap(),
                                           self.verifier_id.unwrap(),
-                                          &self.location.unwrap()));
+                                          &self.location.unwrap())));
         }
         if self.verifier_id.is_none() {
             return Err(MacaroonError::BadMacaroon("Location but no verifier ID found"));
@@ -225,9 +225,9 @@ mod tests {
         let a = new_first_party("user = alice");
         let b = new_first_party("user = alice");
         let c = new_first_party("user = bob");
-        let box_a: Box<Caveat> = box a;
-        let box_b: Box<Caveat> = box b;
-        let box_c: Box<Caveat> = box c;
+        let box_a: Box<Caveat> = Box::new(a);
+        let box_b: Box<Caveat> = Box::new(b);
+        let box_c: Box<Caveat> = Box::new(c);
         assert_eq!(*box_a, *box_b);
         assert!(*box_a != *box_c);
     }
@@ -237,9 +237,9 @@ mod tests {
         let a = new_third_party("foo", b"bar".to_vec(), "foobar");
         let b = new_third_party("foo", b"bar".to_vec(), "foobar");
         let c = new_third_party("baz", b"bar".to_vec(), "foobar");
-        let box_a: Box<Caveat> = box a;
-        let box_b: Box<Caveat> = box b;
-        let box_c: Box<Caveat> = box c;
+        let box_a: Box<Caveat> = Box::new(a);
+        let box_b: Box<Caveat> = Box::new(b);
+        let box_c: Box<Caveat> = Box::new(c);
         assert_eq!(*box_a, *box_b);
         assert!(*box_a != *box_c);
     }
