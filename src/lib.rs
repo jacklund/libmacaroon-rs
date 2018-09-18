@@ -93,10 +93,6 @@
 //! - verification of third-party caveats using discharge macaroons (including ones that themselves have embedded third-party caveats)
 //! - serialization and deserialization of caveats via version 1, 2 or 2J serialization formats (fully compatible with libmacaroons)
 
-#![feature(proc_macro)]
-#![feature(try_from)]
-#![feature(box_syntax, box_patterns)]
-
 #[macro_use]
 extern crate log;
 extern crate rustc_serialize as serialize;
