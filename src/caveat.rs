@@ -1,8 +1,5 @@
-use crypto;
-use error::MacaroonError;
+use crate::{crypto, error::MacaroonError, verifier::Verifier, Macaroon};
 use std::fmt::Debug;
-use verifier::Verifier;
-use Macaroon;
 
 #[derive(PartialEq)]
 pub enum CaveatType {

@@ -9,6 +9,7 @@ repository = "https://github.com/jacklund/libmacaroon-rs"
 keywords = ["macaroon", "cookies", "authorization", "credentials"]
 categories = ["cryptography"]
 license = "MIT"
+edition = "2018"
 
 [dependencies]
 log = "0.3.9"

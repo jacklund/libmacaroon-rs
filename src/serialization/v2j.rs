@@ -1,11 +1,12 @@
-use caveat::{CaveatBuilder, CaveatType};
-use error::MacaroonError;
+use crate::{
+    caveat::{CaveatBuilder, CaveatType},
+    error::MacaroonError,
+    serialization::macaroon_builder::MacaroonBuilder,
+    Macaroon,
+};
+use rustc_serialize::base64::{FromBase64, ToBase64, STANDARD};
 use serde::{Deserialize, Serialize};
-use serde_json;
-use serialization::macaroon_builder::MacaroonBuilder;
-use serialize::base64::{FromBase64, ToBase64, STANDARD};
 use std::str;
-use Macaroon;
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 struct CaveatV2J {
@@ -177,7 +178,7 @@ pub fn deserialize_v2j(data: &[u8]) -> Result<Macaroon, MacaroonError> {
 #[cfg(test)]
 mod tests {
     use super::super::Format;
-    use Macaroon;
+    use crate::Macaroon;
 
     const SERIALIZED_V2J: &str = "{\"v\":2,\"l\":\"http://example.org/\",\"i\":\"keyid\",\
                                   \"c\":[{\"i\":\"account = 3735928559\"},{\"i\":\"user = \

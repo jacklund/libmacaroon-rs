@@ -1,7 +1,9 @@
-use caveat::{CaveatBuilder, CaveatType};
-use error::MacaroonError;
-use serialization::macaroon_builder::MacaroonBuilder;
-use Macaroon;
+use crate::{
+    caveat::{CaveatBuilder, CaveatType},
+    error::MacaroonError,
+    serialization::macaroon_builder::MacaroonBuilder,
+    Macaroon,
+};
 
 // Version 2 fields
 const EOS_V2: u8 = 0;
@@ -136,7 +138,7 @@ impl<'r> V2Deserializer<'r> {
 }
 
 pub fn deserialize_v2(data: &[u8]) -> Result<Macaroon, MacaroonError> {
-    let mut builder: MacaroonBuilder = MacaroonBuilder::new();
+    let mut builder = MacaroonBuilder::new();
     let mut deserializer = V2Deserializer::new(data);
     if deserializer.get_byte()? != 2 {
         return Err(MacaroonError::DeserializationError(String::from(
@@ -235,10 +237,8 @@ pub fn deserialize_v2(data: &[u8]) -> Result<Macaroon, MacaroonError> {
 
 #[cfg(test)]
 mod tests {
-    use caveat;
-    use serialization::macaroon_builder::MacaroonBuilder;
-    use serialize::base64::FromBase64;
-    use Macaroon;
+    use crate::{caveat, serialization::macaroon_builder::MacaroonBuilder, Macaroon};
+    use rustc_serialize::base64::FromBase64;
 
     #[test]
     fn test_deserialize_v2() {

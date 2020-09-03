@@ -1,9 +1,11 @@
-use caveat::{CaveatBuilder, CaveatType};
-use error::MacaroonError;
-use serialization::macaroon_builder::MacaroonBuilder;
-use serialize::base64::{FromBase64, ToBase64, STANDARD};
+use crate::{
+    caveat::{CaveatBuilder, CaveatType},
+    error::MacaroonError,
+    serialization::macaroon_builder::MacaroonBuilder,
+    Macaroon,
+};
+use rustc_serialize::base64::{FromBase64, ToBase64, STANDARD};
 use std::str;
-use Macaroon;
 
 // Version 1 fields
 const LOCATION: &str = "location";
@@ -163,7 +165,7 @@ pub fn deserialize_v1(base64: &[u8]) -> Result<Macaroon, MacaroonError> {
 
 #[cfg(test)]
 mod tests {
-    use Macaroon;
+    use crate::Macaroon;
 
     #[test]
     fn test_deserialize_v1() {

@@ -1,5 +1,4 @@
-use serde_json;
-use serialize::base64;
+use rustc_serialize::base64;
 use std::{num, str, string};
 
 #[derive(Debug)]

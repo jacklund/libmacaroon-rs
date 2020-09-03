@@ -1,4 +1,4 @@
-use error::MacaroonError;
+use crate::error::MacaroonError;
 use sodiumoxide::crypto::auth::hmacsha256::{self, Key, Tag};
 use sodiumoxide::crypto::secretbox;
 

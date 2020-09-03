@@ -1,7 +1,4 @@
-use caveat;
-use crypto;
-use error::MacaroonError;
-use Macaroon;
+use crate::{caveat, crypto, error::MacaroonError, Macaroon};
 
 /// Type of callback for `Verifier::satisfy_general()`
 pub type VerifierCallback = fn(&str) -> bool;
@@ -111,11 +108,8 @@ impl Verifier {
 
 #[cfg(test)]
 mod tests {
-    extern crate time;
-
     use super::Verifier;
-    use crypto;
-    use Macaroon;
+    use crate::{crypto, Macaroon};
 
     #[test]
     fn test_simple_macaroon() {

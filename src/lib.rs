@@ -94,10 +94,6 @@
 //! - serialization and deserialization of caveats via version 1, 2 or 2J serialization formats (fully compatible with libmacaroons)
 #[macro_use]
 extern crate log;
-extern crate rustc_serialize as serialize;
-extern crate serde;
-extern crate serde_json;
-extern crate sodiumoxide;
 
 mod caveat;
 mod crypto;
@@ -111,6 +107,7 @@ pub use serialization::Format;
 pub use verifier::Verifier;
 
 use caveat::{Caveat, CaveatType};
+use log::{debug, info};
 
 /// Initializes the cryptographic libraries. Although you can use libmacaroon-rs without
 /// calling this, the underlying random-number generator is not guaranteed to be thread-safe
@@ -344,8 +341,7 @@ impl Macaroon {
 #[cfg(test)]
 mod tests {
     use super::Macaroon;
-    use caveat::Caveat;
-    use error::MacaroonError;
+    use crate::{caveat::Caveat, error::MacaroonError};
 
     #[test]
     fn create_macaroon() {
