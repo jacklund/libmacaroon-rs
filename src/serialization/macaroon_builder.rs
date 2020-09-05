@@ -1,6 +1,4 @@
-use Macaroon;
-use caveat::Caveat;
-use error::MacaroonError;
+use crate::{caveat::Caveat, error::MacaroonError, Macaroon};
 
 #[derive(Default)]
 pub struct MacaroonBuilder {
