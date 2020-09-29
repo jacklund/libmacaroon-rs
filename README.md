@@ -1,5 +1,7 @@
 # libmacaroon-rs
 
+**NOTE**: This project is deprecated in favor of https://github.com/macaroon-rs/macaroon. This project will no longer be maintained going forward.
+
 Rust implementation of [macaroons](https://research.google.com/pubs/pub41892.html).
 
 [![Build Status](https://travis-ci.org/jacklund/libmacaroon-rs.svg?branch=master)](https://travis-ci.org/jacklund/libmacaroon-rs)
